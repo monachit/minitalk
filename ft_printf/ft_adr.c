@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_adr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnachit <mnachit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 19:52:28 by mnachit           #+#    #+#             */
-/*   Updated: 2024/04/18 15:46:12 by mnachit          ###   ########.fr       */
+/*   Created: 2023/11/27 06:15:07 by mnachit           #+#    #+#             */
+/*   Updated: 2023/12/01 22:13:24 by mnachit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "ft_printf.h"
 
-void handel_signal(int signal)
+int	ft_adr(void *d)
 {
-    static int a;
-    static int i;
+	int	i;
 
-    if (signal == SIGUSR1)
-       a |= (1 << i);
-    i++;
-    if(i == 8)
-    {
-        ft_printf("%c", a);
-        i = 0;
-        a = 0;
-    }
-}
-
-int main()
-{
-    ft_printf("PID : %d\n", getpid());
-    signal(SIGUSR1, handel_signal);
-    signal(SIGUSR2, handel_signal);
-    while (1)
-    {
-        
-    }
-    return (0);
+	i = 0;
+	if (d == 0)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	i += ft_putstr("0x");
+	i += ft_hex((unsigned long)d);
+	return (i);
 }

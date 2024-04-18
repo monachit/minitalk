@@ -2,8 +2,8 @@ NAME1 = client
 NAME2 = server
 CC = cc
 CFALGS = -Wall -Wextra -Werror
-SRCS1 = client.c
-SRCS2 = server.c
+SRCS1 = client.c ft_printf/ft_printf.c ft_printf/ft_adr.c ft_printf/ft_putnbr.c ft_printf/ft_allfunc.c
+SRCS2 = server.c ft_printf/ft_printf.c ft_printf/ft_adr.c ft_printf/ft_putnbr.c ft_printf/ft_allfunc.c
 
 OBJS1 = $(SRCS1:.c=.o)
 OBJS2 = $(SRCS2:.c=.o)

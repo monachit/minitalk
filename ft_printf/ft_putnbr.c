@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnachit <mnachit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 19:52:28 by mnachit           #+#    #+#             */
-/*   Updated: 2024/04/18 15:46:12 by mnachit          ###   ########.fr       */
+/*   Created: 2023/11/22 10:53:58 by mnachit           #+#    #+#             */
+/*   Updated: 2023/11/27 06:32:59 by mnachit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "ft_printf.h"
 
-void handel_signal(int signal)
+int	ft_putnbr(int n)
 {
-    static int a;
-    static int i;
+	int		len;
+	long	nb;
 
-    if (signal == SIGUSR1)
-       a |= (1 << i);
-    i++;
-    if(i == 8)
-    {
-        ft_printf("%c", a);
-        i = 0;
-        a = 0;
-    }
-}
-
-int main()
-{
-    ft_printf("PID : %d\n", getpid());
-    signal(SIGUSR1, handel_signal);
-    signal(SIGUSR2, handel_signal);
-    while (1)
-    {
-        
-    }
-    return (0);
+	nb = n;
+	len = 0;
+	if (nb < 0)
+	{
+		len += ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb >= 10)
+	{
+		len += ft_putnbr(nb / 10);
+		len += ft_putnbr(nb % 10);
+	}
+	else
+		len += ft_putchar(nb + '0');
+	return (len);
 }
