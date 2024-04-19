@@ -6,7 +6,7 @@
 /*   By: mnachit <mnachit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:45:14 by mnachit           #+#    #+#             */
-/*   Updated: 2024/04/18 15:45:19 by mnachit          ###   ########.fr       */
+/*   Updated: 2024/04/19 13:44:15 by mnachit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,17 @@ void    ft_pass(char *str, int pid)
                 kill(pid, SIGUSR1);
             else if ((str[i] & (1 << bit)) == 0)
                 kill(pid, SIGUSR2);
-            bit++;
             usleep(300);
+            bit++;
         }
         i++;
     }
+}
+
+void    ft_exit(char *s)
+{
+    ft_printf("%s", s);
+    exit(1);
 }
 
 void    ft_digit(char *av)
@@ -66,8 +72,8 @@ void    ft_digit(char *av)
     i = 0;
     while (av[i])
     {
-        if (av[i] <= '0' || av[i] >= '9')
-            exit(1);
+        if (av[i] < '0' || av[i] > '9')
+            ft_exit("error");
         i++;
     }
 }
@@ -75,7 +81,7 @@ void    ft_digit(char *av)
 int main(int ac, char **av)
 {
     if (ac != 3)
-        exit(1);
+        ft_exit("error");
     ft_digit(av[1]);
     ft_pass(av[2], ft_atoi(av[1]));
 }

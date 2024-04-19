@@ -6,7 +6,7 @@
 /*   By: mnachit <mnachit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:52:28 by mnachit           #+#    #+#             */
-/*   Updated: 2024/04/18 15:46:12 by mnachit          ###   ########.fr       */
+/*   Updated: 2024/04/19 13:47:40 by mnachit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,18 @@ void handel_signal(int signal)
     }
 }
 
-int main()
+int main(int ac, char **av)
 {
+    (void) av;
+
+    if (ac != 1)
+        exit(1);
     ft_printf("PID : %d\n", getpid());
     signal(SIGUSR1, handel_signal);
     signal(SIGUSR2, handel_signal);
     while (1)
     {
-        
+        sleep(1);
     }
     return (0);
 }
