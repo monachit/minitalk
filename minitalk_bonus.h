@@ -1,14 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnachit <mnachit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 13:16:59 by mnachit           #+#    #+#             */
-/*   Updated: 2024/04/17 13:17:45 by mnachit          ###   ########.fr       */
+/*   Created: 2024/04/20 14:53:49 by mnachit           #+#    #+#             */
+/*   Updated: 2024/04/20 14:55:08 by mnachit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef MINITALK_BONUS_H
+#define MINITALK_BONUS_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+
+#include "ft_printf/ft_printf.h"
+
+
+#endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnachit <mnachit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 19:45:14 by mnachit           #+#    #+#             */
-/*   Updated: 2024/04/21 21:14:13 by mnachit          ###   ########.fr       */
+/*   Created: 2024/04/20 14:53:07 by mnachit           #+#    #+#             */
+/*   Updated: 2024/04/21 19:00:14 by mnachit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (n_p * r);
+}
+
+void    ft_message(int signal)
+{
+    (void )signal;
+    ft_printf("message wsall 9ta3");
 }
 
 void    ft_pass(char *str, int pid)
@@ -78,15 +84,28 @@ void    ft_digit(char *av)
     }
 }
 
+void ft_pass_n(char c, int pid)
+{
+	int bit;
+
+	bit = 0;
+	while (bit < 8)
+	{
+		if ((c & (1 << bit)) != 0)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		usleep(300);
+		bit++;
+	}
+}
+
 int main(int ac, char **av)
 {
-    int pid;
     if (ac != 3)
         ft_exit("error");
     ft_digit(av[1]);
-    pid = ft_atoi(av[1]);
-    
-    if (pid == 0 || kill(pid, 0) == -1)
-        ft_exit("Invalid PID!\n");
-    ft_pass(av[2], pid);
+	signal(SIGUSR1, ft_message);
+    ft_pass(av[2], ft_atoi(av[1]));
+	ft_pass_n('\0', ft_atoi(av[1]));
 }
